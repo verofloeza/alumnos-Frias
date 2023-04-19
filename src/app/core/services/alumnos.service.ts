@@ -26,7 +26,7 @@ export class AlumnosService {
   deleteAlumno(id: number): Observable<Alumno[] | any> {
     return this.alumno$.asObservable()
       .pipe(
-        map((alumnos) => alumnos.filter(i => i.id != id))
+        map((alumnos) => alumnos.find(i => i.id != id))
       )
   }
   ultimoAlumno(array: Alumno[]): Alumno | any {
