@@ -1,6 +1,7 @@
 import { AddStudentsComponent } from './add-students/add-students.component';
 import { CommonModule } from '@angular/common';
 import { DirectivesModule } from '../../directives/directives.module';
+import { EditStudentsComponent } from './edit-students/edit-students.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -15,7 +16,6 @@ import { NgModule } from '@angular/core';
 import { PipesModule } from '../../pipes/pipes.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TableStudentsComponent } from './table-students.component';
-import { EditStudentsComponent } from './edit-students/edit-students.component';
 
 @NgModule({
   declarations: [

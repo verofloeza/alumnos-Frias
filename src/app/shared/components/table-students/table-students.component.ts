@@ -1,6 +1,9 @@
+import { Component, OnDestroy } from '@angular/core';
+import { Observable, Subject, Subscription, takeUntil } from 'rxjs';
+
 import { AddStudentsComponent } from './add-students/add-students.component';
-import { Alumno } from 'src/app/models';
-import { Component } from '@angular/core';
+import { Alumno } from 'src/app/core/models';
+import { AlumnosService } from '../../../core/services/alumnos.service';
 import { EditStudentsComponent } from './edit-students/edit-students.component';
 import {MatDialog} from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
@@ -11,27 +14,36 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./table-students.component.scss']
 })
 
-export class TableStudentsComponent {
-  constructor(public dialog: MatDialog) {}
+export class TableStudentsComponent implements OnDestroy {
 
-  alumnos : Alumno[] = [
-    new Alumno(1, 'Veronica', 'Frias', 'vero@gmail.com', 8,  new Date('1986-12-15'), 'F', 'Curso React', 'Clase 2', 10),
-    new Alumno(2, 'Marcos', 'Lopez', 'marcos@gmail.com', 15,  new Date('1979-4-2'), 'M', 'Curso Angular', 'Clase 1', 8),
-  ]
-
-  
-  
-  
   displayedColumns: string[] = ['Nro', 'NombreApellido', 'Email', 'Edad', 'FechaNacimiento', 'Genero', 'Curso', 'Clase', 'Nota', 'Editar', 'Eliminar'];
-  
 
-  dataSource = new MatTableDataSource(this.alumnos);
+    dataSource = new MatTableDataSource<Alumno>();
 
+    alumnoNew$: Observable<[]>;
+    
+    private alumnosSubscription: Subscription;
+    private destroyed$ = new Subject();
+    
+    constructor(
+      public dialog: MatDialog,
+      private alumnosService: AlumnosService,
+      
+      
+      ) {
+        this.alumnosSubscription = this.alumnosService.getAlumnos()
+        .subscribe((alumnos) => {
+          this.dataSource.data = alumnos;
+        })
+        
+          this.alumnoNew$ = this.alumnosService.ultimoAlumno(this.dataSource.data)
+   
+            
+        }
 
   openDialog() {
     const dialogRef = this.dialog.open(AddStudentsComponent);
     dialogRef.afterClosed().subscribe(result => {
-      console.log(this.dataSource.data);
       if (result) {
         this.dataSource.data = [
           ...this.dataSource.data,
@@ -41,13 +53,21 @@ export class TableStudentsComponent {
             
           }
         ];
+        this.alumnoNew$ = this.alumnosService.ultimoAlumno(this.dataSource.data)
       }
     });
   }
 
   deleteAlumno(id: number){
-    const newData = this.dataSource.data;
-    this.dataSource.data = newData.filter((i)=> i.id !== id)
+    this.alumnosService.deleteAlumno(id)
+        .pipe(takeUntil(this.destroyed$))
+        .subscribe(
+          (alumnos)=>{
+            this.dataSource.data = [alumnos]
+          }
+        )
+    // const newData = this.dataSource.data;
+    // this.dataSource.data = this.dataSource.data.filter((i)=> i.id !== id)
   }
   
   openEditAlumno(id: number, data : []){
@@ -65,6 +85,11 @@ export class TableStudentsComponent {
         ];
       }
     });
+  }
+  
+  ngOnDestroy(): void {
+    this.alumnosSubscription.unsubscribe();
+    this.destroyed$.next(true);
   }
 }
 

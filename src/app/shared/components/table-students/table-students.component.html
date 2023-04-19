@@ -3,6 +3,11 @@
         <h1 appFontSize appColorTitle appWeightText>Listado de Alumnos</h1>
     </div>
 </div>
+<div class="grid">
+  <div class="col-12">
+    <p>Ultimo alumno agregado: {{ alumnoNew$ | async | json }}</p>
+  </div>
+</div>
 <div class="demo-button-container">
     <button mat-raised-button (click)="openDialog()" class="demo-button">
       Agregar Alumnos

@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { MatDialogRef } from '@angular/material/dialog';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { Clase, Curso } from 'src/app/models';
+import { Clase, Curso } from 'src/app/core/models';
 
 @Component({
   selector: 'app-edit-students',

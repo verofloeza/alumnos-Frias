@@ -1,4 +1,4 @@
-import { Clase, Curso } from 'src/app/models';
+import { Clase, Curso } from 'src/app/core/models';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Component } from '@angular/core';
