@@ -64,6 +64,7 @@ export class TableStudentsComponent implements OnDestroy {
         .subscribe(
           (alumnos)=>{
             this.dataSource.data = [alumnos]
+            this.alumnoNew$ = this.alumnosService.ultimoAlumno(this.dataSource.data)
           }
         )
     // const newData = this.dataSource.data;
@@ -83,6 +84,7 @@ export class TableStudentsComponent implements OnDestroy {
             ...result,
           }
         ];
+        this.alumnoNew$ = this.alumnosService.ultimoAlumno(this.dataSource.data)
       }
     });
   }
