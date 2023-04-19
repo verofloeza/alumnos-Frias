@@ -30,6 +30,7 @@ export class AlumnosService {
       )
   }
   ultimoAlumno(array: Alumno[]): Alumno | any {
+    this.ultAlumno = [];
     const cantAlumnos = array.length;
     this.ultAlumno.push(array[cantAlumnos - 1]) ;
     this.ultimoAlumno$.next(this.ultAlumno);
