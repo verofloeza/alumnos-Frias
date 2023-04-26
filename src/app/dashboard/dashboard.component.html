@@ -13,17 +13,22 @@
  </mat-toolbar>
  <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side" opened>
-        <mat-list role="list">
-            <mat-list-item role="listitem" class="active listItem"><span class="list">Alumnos</span></mat-list-item>
-            <mat-list-item role="listitem" class="listItem"><span class="list">Clases</span></mat-list-item>
-            <mat-list-item role="listitem" class="listItem"><span class="list">Cursos</span></mat-list-item>
-          </mat-list>
+      <mat-nav-list>
+        <a
+          [routerLink]="link.path"
+          mat-list-item
+          *ngFor="let link of links"
+        >
+          <mat-icon *ngIf="link.icon" class="listItem">{{ link.icon }}</mat-icon> {{ link.title }}
+        </a>
+      </mat-nav-list>
       
     </mat-drawer>
   
     <div class="example-sidenav-content">
       <!-- contenido  -->
-      <app-table-students></app-table-students>
+      <router-outlet></router-outlet>
+      <!-- <app-students></app-students> -->
     </div>
   
   </mat-drawer-container>

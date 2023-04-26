@@ -1,0 +1,35 @@
+<h1 mat-dialog-title appFontSize>ABM Inscripciones</h1>
+<div mat-dialog-content>
+  <form class="grid formgrid" [formGroup]="inscripcionForm">
+    <!-- CONTROL DE NOMBRE -->
+
+    <div class="col-6 field">
+        <mat-form-field appearance="fill">
+            <mat-label>Alumnos</mat-label>
+            <mat-select  name="alumnos" [formControl]="alumnoControl">
+              <mat-option *ngFor="let alumno of alumnosBD" [value]="alumno">
+                {{alumno | fullName}}
+              </mat-option> 
+            </mat-select>
+          </mat-form-field>
+    </div>
+
+      <!-- CONTROL DE FECHA DE INICIO -->
+      <div class="col-6 field">
+        <mat-form-field appearance="fill">
+            <mat-label>Cursos</mat-label>
+            <mat-select  name="alumnos" [formControl]="cursoControl">
+              <mat-option *ngFor="let curso of cursosBD" [value]="curso">
+                {{curso.name}}
+              </mat-option> 
+            </mat-select>
+          </mat-form-field>
+    </div>
+
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button (click)="guardar()" mat-button>Guardar</button>
+</div>

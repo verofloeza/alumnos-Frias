@@ -3,11 +3,6 @@
         <h1 appFontSize appColorTitle appWeightText>Listado de Alumnos</h1>
     </div>
 </div>
-<div class="grid">
-  <div class="col-12">
-    <p>Ultimo alumno agregado: {{ alumnoNew$ | async | json }}</p>
-  </div>
-</div>
 <div class="demo-button-container">
     <button mat-raised-button (click)="openDialog()" class="demo-button">
       Agregar Alumnos
@@ -54,24 +49,6 @@
             <span *ngSwitchCase="'M'"><mat-icon class="male">perm_identity</mat-icon></span>
         </td>
       </ng-container>
-
-    <!-- Curso Column -->
-    <ng-container matColumnDef="Curso">
-      <th mat-header-cell *matHeaderCellDef appFontSize>Curso</th>
-      <td mat-cell *matCellDef="let element">{{element.course}}</td>
-    </ng-container>
-
-    <!-- Clase Column -->
-    <ng-container matColumnDef="Clase">
-      <th mat-header-cell *matHeaderCellDef appFontSize>Clase</th>
-      <td mat-cell *matCellDef="let element">{{element.classCourse}}</td>
-    </ng-container>
-    
-      <!-- Nota Column -->
-    <ng-container matColumnDef="Nota">
-        <th mat-header-cell *matHeaderCellDef appFontSize>Nota</th>
-        <td mat-cell *matCellDef="let element">{{element.percent}}</td>
-      </ng-container>
     
     <!-- Editar Column -->
     <ng-container matColumnDef="Editar">
@@ -88,3 +65,4 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+

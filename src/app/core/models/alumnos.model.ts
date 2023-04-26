@@ -6,9 +6,6 @@ export interface IAlumno {
     age: number;
     birthdate: Date;
     gender: String;
-    course: string;
-    classCourse: string;
-    percent: number;
   }
   export class Alumno implements IAlumno {
 
@@ -20,9 +17,6 @@ export interface IAlumno {
       public age: number,
       public birthdate: Date,
       public gender: String,
-      public course: string,
-      public classCourse: string,
-      public percent: number,
     ) {}
   
     

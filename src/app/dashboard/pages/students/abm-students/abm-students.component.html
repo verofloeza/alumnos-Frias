@@ -1,4 +1,4 @@
-<h1 mat-dialog-title appFontSize appColorTitle>Editar Alumno</h1>
+<h1 mat-dialog-title appFontSize    >Agregar Alumno</h1>
 <div mat-dialog-content>
   <form class="grid formgrid" [formGroup]="alumnosForm">
     <!-- CONTROL DE NOMBRE -->
@@ -75,49 +75,10 @@
           </mat-radio-group>
       </div>
 
-      <!-- CONTROL DE CURSO -->
-    <div class="col-4 field">
-        <mat-form-field class="w-full">
-          <mat-label>Curso</mat-label>
-          <mat-select name="clase" [formControl]="cursoControl">
-            <mat-option *ngFor="let curso of cursos" [value]="curso.value">
-                {{curso.value}}
-              </mat-option>
-          </mat-select>
-          <mat-error *ngFor="let error of cursoControl.errors | keyvalue">{{ error | controlErrorMessages }}</mat-error>
-        </mat-form-field>
-      </div>
-
-      <!-- CONTROL DE CLASE -->
-    <div class="col-4 field">
-        <mat-form-field class="w-full">
-          <mat-label>Clase</mat-label>
-          <mat-select name="clase" [formControl]="claseControl">
-            <mat-option *ngFor="let clase of clases" [value]="clase.value">
-                {{clase.value}}
-              </mat-option>
-          </mat-select>
-          <mat-error *ngFor="let error of claseControl.errors | keyvalue">{{ error | controlErrorMessages }}</mat-error>
-        </mat-form-field>
-      </div>
-
-      <!-- CONTROL DE EDAD -->
-    <div class="col-4 field">
-        <mat-form-field class="w-full">
-          <mat-label>Nota</mat-label>
-          <input
-            [formControl]="notaControl"
-            type="number"
-            matInput
-          >
-          <mat-error *ngFor="let error of notaControl.errors | keyvalue">{{ error | controlErrorMessages }}</mat-error>
-        </mat-form-field>
-      </div>
-
   </form>
 </div>
 
 <div mat-dialog-actions>
   <button mat-button mat-dialog-close>Cancelar</button>
-  <button (click)="guardar()" mat-button>Editar</button>
+  <button (click)="guardar()" mat-button>Agregar</button>
 </div>

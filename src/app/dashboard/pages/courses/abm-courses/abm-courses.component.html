@@ -1,0 +1,38 @@
+<h1 mat-dialog-title appFontSize>ABM Cursos</h1>
+<div mat-dialog-content>
+  <form class="grid formgrid" [formGroup]="cursosForm">
+    <!-- CONTROL DE NOMBRE -->
+
+    <div class="col-4 field">
+      <mat-form-field class="w-full">
+        <mat-label>Nombre</mat-label>
+        <input
+          [formControl]="nombreControl"
+          type="text"
+          matInput
+        >
+        <mat-error *ngFor="let error of nombreControl.errors | keyvalue">{{ error | controlErrorMessages }}</mat-error>
+      </mat-form-field>
+    </div>
+
+      <!-- CONTROL DE FECHA DE INICIO -->
+    <div class="col-8 field">
+        <mat-form-field class="w-full">
+          <mat-label>Fecha de Inicio</mat-label>
+          <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+            <input matStartDate formControlName="start" placeholder="Start date">
+            <input matEndDate formControlName="end" placeholder="End date">
+          </mat-date-range-input>
+          <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+      </div>
+
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button (click)="guardar()" mat-button>Guardar</button>
+</div>
