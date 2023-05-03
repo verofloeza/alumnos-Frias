@@ -4,6 +4,11 @@ import { NgModule } from '@angular/core';
 
 const routesDash: Routes = [
   {
+    path: '',
+    redirectTo: 'estudiantes',
+    pathMatch:'full'
+  },
+  {
     path: 'estudiantes',  
     loadChildren: () => import('./pages/students/students.module').then((m)=> m.StudentsModule )
   },

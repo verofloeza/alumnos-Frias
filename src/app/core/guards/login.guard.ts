@@ -28,8 +28,6 @@ export class LoginGuard implements CanActivate {
           }
         })
       )
-    
-    return true;
   }
   
 }

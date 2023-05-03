@@ -1,6 +1,6 @@
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from '../models/usuario.model';
@@ -54,5 +54,31 @@ export class AuthService {
     this.authUser$.next(null);
     this.router.navigate(['auth']);
   }
+
+  verificarToken(): Observable<boolean> {
+    const token = localStorage.getItem('token');
+      return this.httpClient.get<Usuario[]>(
+      `http://localhost:3000/user?token=${token}`,
+      {
+        headers: new HttpHeaders({
+          'Authorization': token || '',
+        }),
+      }
+    )
+      .pipe(
+        map((usuarios) => {
+          const usuarioAutenticado = usuarios[0];
+          if (usuarioAutenticado) {
+            localStorage.setItem('token', usuarioAutenticado.token)
+            this.authUser$.next(usuarioAutenticado);
+          }
+          return !!usuarioAutenticado;
+        }),
+        catchError((err) => {
+          alert('Error al verificar el token');
+          return throwError(() => err);
+        })
+      );
+    }
   
 }
