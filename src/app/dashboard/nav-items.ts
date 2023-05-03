@@ -6,7 +6,7 @@ interface NavItem {
   
   const links: NavItem[] = [
     {
-      path: '',
+      path: 'estudiantes',
       title: 'Estudiantes',
       icon: 'person',
     },

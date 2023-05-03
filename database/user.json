@@ -1,0 +1,13 @@
+{
+    "user": [
+        {
+            "id": 1,
+            "name": "Veronica",
+            "lastName": "Frias",
+            "email": "vero@gmail.com",
+            "pass": "1234",
+            "token": "12sdfgsdf5gs41df1sdfg3",
+            "role": "admin"
+        }
+    ]
+}

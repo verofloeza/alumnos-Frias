@@ -1,5 +1,7 @@
+import { AbmCoursesComponent } from './abm-courses/abm-courses.component';
 import { CommonModule } from '@angular/common';
 import { CoursesComponent } from './courses.component';
+import { CoursesRoutingModule } from './courses-routing.module';
 import { DirectivesModule } from 'src/app/shared/directives/directives.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -11,7 +13,6 @@ import { MatTableModule } from '@angular/material/table';
 import { NgModule } from '@angular/core';
 import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AbmCoursesComponent } from './abm-courses/abm-courses.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { AbmCoursesComponent } from './abm-courses/abm-courses.component';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatDatepickerModule,
+    CoursesRoutingModule
     
   ],
   exports: [

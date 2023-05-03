@@ -15,6 +15,7 @@ import { NgModule } from '@angular/core';
 import { PipesModule } from '../../../shared/pipes/pipes.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StudentsComponent } from './students.component';
+import { StudentsRoutingModule } from './students-routing.module';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { StudentsComponent } from './students.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatRadioModule,
-    MatSelectModule
+    MatSelectModule,
+    StudentsRoutingModule
   ],
   exports: [
     StudentsComponent

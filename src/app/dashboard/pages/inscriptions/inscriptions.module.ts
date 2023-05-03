@@ -2,6 +2,7 @@ import { AbmInscriptionComponent } from './abm-inscription/abm-inscription.compo
 import { CommonModule } from '@angular/common';
 import { DirectivesModule } from 'src/app/shared/directives/directives.module';
 import { InscriptionsComponent } from './inscriptions.component';
+import { InscriptionsRoutingModule } from './inscriptions-routing.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -33,7 +34,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     MatDatepickerModule,
     MatSelectModule,
-    MatExpansionModule
+    MatExpansionModule,
+    InscriptionsRoutingModule
   ],
   exports: [
     InscriptionsComponent

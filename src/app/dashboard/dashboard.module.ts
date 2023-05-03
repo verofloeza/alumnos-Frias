@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { CoursesModule } from './pages/courses/courses.module';
 import { DashboardComponent } from './dashboard.component';
+import { DashboardRoutingModule } from './dashboard-routing.module';
 import { InscriptionsModule } from './pages/inscriptions/inscriptions.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -25,7 +26,9 @@ import { StudentsModule } from './pages/students/students.module';
     StudentsModule,
     RouterModule,
     CoursesModule,
-    InscriptionsModule
+    InscriptionsModule,
+    RouterModule,
+    DashboardRoutingModule
   ],
   exports: [
     DashboardComponent
