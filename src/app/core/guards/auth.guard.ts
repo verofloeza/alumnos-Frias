@@ -17,21 +17,20 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       
       const token = localStorage.getItem('token');
-      if(token){
-        return this.authService.verificarToken()
-        .pipe(
+      console.log('token::: ', token);
+      if (token !== null) {
+        return this.authService.verificarToken().pipe(
           map((usuarioAutenticado) => {
             if (!usuarioAutenticado) {
-              return this.router.createUrlTree(['auth', 'login'])
+              return this.router.createUrlTree(['auth', 'login']);
             } else {
               return true;
             }
           })
-        )
-      }else{
-        return false;
+        );
+      } else {
+        return this.router.createUrlTree(['auth', 'login']);
       }
-      
-  }
+    }
   
 }
