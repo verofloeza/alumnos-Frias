@@ -30,6 +30,6 @@ const routesDash: Routes = [
   declarations: [],
   imports: [
     RouterModule.forChild(routesDash)
-  ]
+  ], 
 })
 export class DashboardRoutingModule { }

@@ -14,6 +14,9 @@ const routesStudents : Routes = [
   declarations: [],
   imports: [
     RouterModule.forChild(routesStudents)
+  ],
+  exports: [
+    RouterModule
   ]
 })
 export class StudentsRoutingModule { }

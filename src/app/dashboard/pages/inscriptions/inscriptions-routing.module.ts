@@ -14,6 +14,9 @@ const routesInscriptions : Routes = [
   declarations: [],
   imports: [
     RouterModule.forChild(routesInscriptions)
+  ],
+  exports: [
+    RouterModule
   ]
 })
 export class InscriptionsRoutingModule { }
