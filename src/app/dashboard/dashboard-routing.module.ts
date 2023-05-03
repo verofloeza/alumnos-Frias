@@ -20,6 +20,10 @@ const routesDash: Routes = [
     path: 'inscripciones',  
     loadChildren: () => import('./pages/inscriptions/inscriptions.module').then((m)=> m.InscriptionsModule )
   },
+  {
+    path: '**',
+    redirectTo: 'estudiantes',
+  }
 ]
 
 @NgModule({

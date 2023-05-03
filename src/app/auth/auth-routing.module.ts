@@ -4,9 +4,18 @@ import { NgModule } from '@angular/core';
 
 const routesAuth : Routes = [
   {
-    path: '',  
+    path: '',
+    redirectTo: 'login',
+    pathMatch:'full'
+  },
+  {
+    path: 'login',  
     loadChildren : () => import('./pages/login/login.module').then((m)=> m.LoginModule)
     },
+    {
+      path: '**',
+      redirectTo: 'login',
+    }
 ]
 
 @NgModule({
