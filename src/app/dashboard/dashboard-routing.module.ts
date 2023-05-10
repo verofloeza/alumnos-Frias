@@ -1,5 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 
+import { AdminGuard } from '../core/guards/admin.guard';
 import { NgModule } from '@angular/core';
 
 const routesDash: Routes = [
@@ -19,6 +20,12 @@ const routesDash: Routes = [
   {
     path: 'inscripciones',  
     loadChildren: () => import('./pages/inscriptions/inscriptions.module').then((m)=> m.InscriptionsModule )
+  },
+  {
+    path: 'usuarios', 
+    loadChildren: () => import('./pages/users/users.module').then((m)=> m.UsersModule ), 
+    canActivate: [AdminGuard]
+    
   },
   {
     path: '**',

@@ -4,6 +4,7 @@ import { Observable, Subject, Subscription, takeUntil } from 'rxjs';
 import { AbmStudentsComponent } from './abm-students/abm-students.component';
 import { Alumno } from 'src/app/core/models';
 import { AlumnosService } from '../../../core/services/alumnos.service';
+import { HttpClient } from '@angular/common/http';
 import {MatDialog} from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -14,7 +15,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class StudentsComponent implements OnDestroy{
 
-  displayedColumns: string[] = ['Nro', 'NombreApellido', 'Email', 'Edad', 'FechaNacimiento', 'Genero', 'Editar', 'Eliminar'];
+    displayedColumns: string[] = ['Nro', 'NombreApellido', 'Email', 'Edad', 'FechaNacimiento', 'Genero', 'Editar', 'Eliminar'];
 
     dataSource = new MatTableDataSource<Alumno>();
     
@@ -24,7 +25,7 @@ export class StudentsComponent implements OnDestroy{
     constructor(
       public dialog: MatDialog,
       private alumnosService: AlumnosService,
-      
+      private httpClient: HttpClient
       
       ) {
         this.alumnosSubscription = this.alumnosService.getAlumnos()
@@ -39,42 +40,26 @@ export class StudentsComponent implements OnDestroy{
     const dialogRef = this.dialog.open(AbmStudentsComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        
-        this.dataSource.data = [
-          ...this.dataSource.data,
-          {
-            id: this.dataSource.data.length + 1,
-            ...result,
-            
-          }
-        ];
+          this.httpClient.post<Alumno[]>('http://localhost:3000/students', result)
+          .subscribe( (data) =>{
+            this.alumnosService.getAlumnos()
+          })
       }
     });
   }
 
   deleteAlumno(id: number){
     this.alumnosService.deleteAlumno(id)
-        .pipe(takeUntil(this.destroyed$))
-        .subscribe(
-          (alumnos)=>{
-            this.dataSource.data = [alumnos]
-          }
-        )
   }
   
   openEditAlumno(id: number, data : []){
     const dialogRef = this.dialog.open(AbmStudentsComponent,{data: data});
     dialogRef.afterClosed().subscribe(result => {
-      const newData = this.dataSource.data;
       if (result) {
-        this.dataSource.data = newData.filter((i)=> i.id !== id)
-        this.dataSource.data = [
-          ...this.dataSource.data,
-          {
-            id: id,
-            ...result,
-          }
-        ];
+        this.httpClient.put<Alumno[]>(`http://localhost:3000/students/${id}`, result)
+          .subscribe( (data) =>{
+            this.alumnosService.getAlumnos()
+          })
       }
     });
   }

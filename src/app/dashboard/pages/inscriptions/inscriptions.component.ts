@@ -1,5 +1,6 @@
 import { AbmInscriptionComponent } from './abm-inscription/abm-inscription.component';
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Inscripciones } from 'src/app/core/models';
 import { InscripcionesService } from 'src/app/core/services/inscripciones.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -18,7 +19,8 @@ export class InscriptionsComponent {
 
   constructor(
     public dialog: MatDialog,
-    private inscripcionesService: InscripcionesService
+    private inscripcionesService: InscripcionesService,
+    private httpClient: HttpClient
   ){
     this.inscripcionesService.inscripcion
     .subscribe(
@@ -31,14 +33,14 @@ export class InscriptionsComponent {
     const now = new Date();
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.dataSource.data = [
-          ...this.dataSource.data,
-          {
-            id: this.dataSource.data.length + 1,
-            date: now,
-            ...result
-          }
-        ];
+        result = {
+          ...result,
+          date: now
+        }
+        this.httpClient.post<Inscripciones[]>('http://localhost:3000/inscription', result)
+          .subscribe( (data) =>{
+            this.inscripcionesService.inscripcion
+          })
       }
     });
   }
@@ -50,22 +52,16 @@ export class InscriptionsComponent {
     });
     dialog.afterClosed().subscribe((valorDelFormulario) => {
       if (valorDelFormulario) {
-        this.dataSource.data = this.dataSource.data.map(
-          (inscripcionActual) => inscripcionActual.id === inscripcion.id
-            ? ({ ...inscripcionActual, ...valorDelFormulario}) 
-            : inscripcionActual,
-        );
+        this.httpClient.put<Inscripciones[]>(`http://localhost:3000/inscription/${inscripcion.id}`, valorDelFormulario)
+          .subscribe( (data) =>{
+            this.inscripcionesService.inscripcion
+          })
       }
     })
   }
 
   eliminarInscripcion(id: number): void {
     this.inscripcionesService.deleteInscripcion(id)
-    .subscribe(
-      (inscripcionActuales)=>{
-        this.dataSource.data = inscripcionActuales
-      }
-    )
   }
 
 }

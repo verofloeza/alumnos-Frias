@@ -1,6 +1,7 @@
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Alumno } from '../models/alumnos.model';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -8,24 +9,30 @@ import { Injectable } from '@angular/core';
 })
 export class AlumnosService {
 
-  alumno: Alumno[]  = [
-    new Alumno(1, 'Veronica', 'Frias', 'vero@gmail.com', 8,  new Date('1986-12-15'), 'F'),
-    new Alumno(2, 'Marcos', 'Lopez', 'marcos@gmail.com', 15,  new Date('1979-4-2'), 'M'),
-  ]
+  alumno: Alumno[]  = [];
   ultAlumno: Alumno[] = [];
 
   private alumno$ = new BehaviorSubject<Alumno[]>(this.alumno);
 
-  constructor() { }
+  constructor(
+    private httpClient: HttpClient
+  ) { }
 
   getAlumnos() : Observable<Alumno[]> {
+    this.httpClient.get<Alumno[]>('http://localhost:3000/students')
+    .subscribe({
+      next: (student) =>{
+        this.alumno$.next(student)
+      }
+    })
     return this.alumno$.asObservable();
   }
   
   deleteAlumno(id: number): Observable<Alumno[] | any> {
+    this.httpClient.delete<Alumno[]>(`http://localhost:3000/students/${id}`)
+          .subscribe( (data) =>{
+            this.getAlumnos()
+          })
     return this.alumno$.asObservable()
-      .pipe(
-        map((alumnos) => alumnos.find(i => i.id != id))
-      )
   }
 }

@@ -52,8 +52,7 @@ describe('UsersComponent', () => {
   });
 
   it('Obtener todos los usuarios', () =>{
-    const spyOnAuthServiceLogin = spyOn(TestBed.inject(UsersService), 'getUsuarios');
-    component.
+   
   })
 
 });

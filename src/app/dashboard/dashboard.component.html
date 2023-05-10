@@ -4,23 +4,37 @@
    </button>
    <span class="titleToolbar">CoderDEV</span>
    <span class="example-spacer"></span>
-   <p>{{ (authUser$ | async)?.name }}</p>
+   <p class="titleToolbar" appCapitalize>{{title}}</p>
+   <span class="example-spacer"></span>
+   <p>{{ (authUser$ | async)?.firstName }} | {{ (authUser$ | async)?.role }}</p>
    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" (click)="logout()">
      <mat-icon>exit_to_app</mat-icon>
    </button>
  </mat-toolbar>
  <mat-drawer-container class="example-container" autosize>
-    <mat-drawer #drawer class="example-sidenav" mode="side" opened>
-      <mat-nav-list>
+    <mat-drawer #drawer class="example-sidenav" mode="side" opened [ngSwitch]="(authUser$ | async)?.role">
+      <mat-nav-list *ngSwitchCase="'admin'">
         <a
+          *ngFor="let link of links"
           [routerLink]="link.path"
           mat-list-item
-          *ngFor="let link of links"
+          
+          (click)="getUrl(link.title)"
         >
           <mat-icon *ngIf="link.icon" class="listItem">{{ link.icon }}</mat-icon> {{ link.title }}
         </a>
       </mat-nav-list>
-      
+      <mat-nav-list *ngSwitchCase="'cliente'">
+        <a
+          *ngFor="let linkC of linksClient"
+          [routerLink]="linkC.path"
+          mat-list-item
+          
+          (click)="getUrl(linkC.title)"
+        >
+          <mat-icon *ngIf="linkC.icon" class="listItem">{{ linkC.icon }}</mat-icon> {{ linkC.title }}
+        </a>
+      </mat-nav-list>
     </mat-drawer>
   
     <div class="example-sidenav-content">

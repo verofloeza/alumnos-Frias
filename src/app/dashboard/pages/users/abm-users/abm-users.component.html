@@ -1,6 +1,6 @@
-<h1 mat-dialog-title appFontSize>Abm Alumno</h1>
+<h1 mat-dialog-title appFontSize>Abm Usuario</h1>
 <div mat-dialog-content>
-  <form class="grid formgrid" [formGroup]="alumnosForm">
+  <form class="grid formgrid" [formGroup]="usuarioForm">
     <!-- CONTROL DE NOMBRE -->
 
     <div class="col-4 field">
@@ -45,34 +45,29 @@
       <!-- CONTROL DE EDAD -->
     <div class="col-3 field">
         <mat-form-field class="w-full">
-          <mat-label>Edad</mat-label>
+          <mat-label>Pass</mat-label>
           <input
-            [formControl]="edadControl"
-            type="number"
+            [formControl]="passControl"
+            type="pass"
             matInput
           >
-          <mat-error *ngFor="let error of edadControl.errors | keyvalue">{{ error | controlErrorMessages }}</mat-error>
-        </mat-form-field>
-      </div>
-
-      <!-- CONTROL DE FECHA DE NACIMIENTO -->
-    <div class="col-4 field">
-        <mat-form-field class="w-full">
-          <mat-label>Fecha de Nacimiento</mat-label>
-          <input matInput [matDatepicker]="picker1" [formControl]="nacimientoControl">
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
-            <mat-datepicker #picker1></mat-datepicker>
+          <mat-error *ngFor="let error of passControl.errors | keyvalue">{{ error | controlErrorMessages }}</mat-error>
         </mat-form-field>
       </div>
 
       <!-- CONTROL DE GENERO -->
     <div class="col-5 field">
-        <p>Género</p>
-          <mat-radio-group [formControl]="generoControl">
-            <mat-radio-button value="F">Femenino</mat-radio-button>
-            <mat-radio-button value="M">Masculino</mat-radio-button>
-          </mat-radio-group>
+        <mat-form-field appearance="fill">
+            <mat-label>Role</mat-label>
+            <mat-select  name="alumnos" [formControl]="roleControl">
+              <mat-option value="admin">
+                Admin
+              </mat-option> 
+              <mat-option value="cliente">
+                Cliente
+              </mat-option> 
+            </mat-select>
+          </mat-form-field>
       </div>
 
   </form>

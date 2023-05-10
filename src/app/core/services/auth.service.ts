@@ -16,6 +16,7 @@ export interface LoginFormValue {
 export class AuthService {
 
   private authUser$ = new BehaviorSubject<Usuario | null>(null);
+  private authRole$ = new BehaviorSubject<Usuario | null>(null);
 
   constructor(
     private router: Router,
@@ -80,5 +81,32 @@ export class AuthService {
         })
       );
     }
+
+    getRole(): Observable<boolean> {
+      const token = localStorage.getItem('token');
+        return this.httpClient.get<Usuario[]>(
+        `http://localhost:3000/user?token=${token}`,
+        {
+          headers: new HttpHeaders({
+            'Authorization': token || '',
+          }),
+        }
+      )
+        .pipe(
+          map((usuarios) => {
+            const usuarioAutenticado = usuarios[0];
+            if (usuarioAutenticado.role === 'admin') {
+              this.authRole$.next(usuarioAutenticado);
+              return !!usuarioAutenticado;
+            }else{
+              return !usuarioAutenticado;
+            }
+          }),
+          catchError((err) => {
+            alert('Error al verificar el token');
+            return throwError(() => err);
+          })
+        );
+      }
   
 }

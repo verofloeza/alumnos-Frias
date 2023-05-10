@@ -1,3 +1,4 @@
+import { CapitalizeDirective } from './capitalize.directive';
 import { ColorTitleDirective } from './color-title.directive';
 import { CommonModule } from '@angular/common';
 import { FontSizeDirective } from './font-size.directive';
@@ -8,7 +9,8 @@ import { WeightTextDirective } from './weight-text.directive';
   declarations: [
     FontSizeDirective,
     ColorTitleDirective,
-    WeightTextDirective
+    WeightTextDirective,
+    CapitalizeDirective
   ],
   imports: [
     CommonModule
@@ -16,7 +18,8 @@ import { WeightTextDirective } from './weight-text.directive';
   exports: [
     FontSizeDirective,
     ColorTitleDirective,
-    WeightTextDirective
+    WeightTextDirective,
+    CapitalizeDirective
   ]
 })
 export class DirectivesModule { }

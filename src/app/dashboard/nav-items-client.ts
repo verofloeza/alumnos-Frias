@@ -4,7 +4,7 @@ interface NavItem {
     icon?: string;
   }
   
-  const links: NavItem[] = [
+  const linksClient: NavItem[] = [
     {
       path: 'estudiantes',
       title: 'Estudiantes',
@@ -20,11 +20,6 @@ interface NavItem {
         title: 'Inscripciones',
         icon: 'assignment_ind',
     },
-    {
-      path: 'usuarios',
-      title: 'Usuarios',
-      icon: 'account_circle',
-  },
   ]
   
-  export default links;
+  export default linksClient;

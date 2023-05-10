@@ -2,6 +2,7 @@ import { AbmCoursesComponent } from './abm-courses/abm-courses.component';
 import { Component } from '@angular/core';
 import { Curso } from 'src/app/core/models';
 import { CursosService } from '../../../core/services/cursos.service';
+import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -17,7 +18,8 @@ export class CoursesComponent {
 
   constructor(
     public dialog: MatDialog,
-    private CursosService: CursosService
+    private CursosService: CursosService,
+    private httpClient: HttpClient
     ){
     this.CursosService.curso
     .subscribe((curso)=>
@@ -29,18 +31,15 @@ export class CoursesComponent {
     const dialogRef = this.dialog.open(AbmCoursesComponent);
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.dataSource.data = [
-          ...this.dataSource.data,
-          {
-            id: this.dataSource.data.length + 1,
-            ...result,
-            
-          }
-        ];
+        this.httpClient.post<Curso[]>('http://localhost:3000/courses', result)
+          .subscribe( (data) =>{
+            this.CursosService.curso
+          })
       }
     });
   }
   editarCurso(curso: Curso): void {
+    const id = curso.id
     const dialog = this.dialog.open(AbmCoursesComponent, {
       data: {
         curso
@@ -48,20 +47,14 @@ export class CoursesComponent {
     });
     dialog.afterClosed().subscribe((valorDelFormulario) => {
       if (valorDelFormulario) {
-        this.dataSource.data = this.dataSource.data.map(
-          (cursoActual) => cursoActual.id === curso.id
-            ? ({ ...cursoActual, ...valorDelFormulario}) 
-            : cursoActual,
-        );
+        this.httpClient.put<Curso[]>(`http://localhost:3000/courses/${id}`, valorDelFormulario)
+          .subscribe( (data) =>{
+            this.CursosService.curso
+          })
       }
     })
   }
   eliminarCurso(id: number): void {
     this.CursosService.deleteCurso(id)
-    .subscribe(
-      (cursosActuales)=>{
-        this.dataSource.data = cursosActuales
-      }
-    )
   }
 }
