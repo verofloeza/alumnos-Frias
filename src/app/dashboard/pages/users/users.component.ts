@@ -68,7 +68,4 @@ export class UsersComponent implements OnDestroy {
     this.usuariosSubscription.unsubscribe();
   }
 }
-function generateRandom() {
-  throw new Error('Function not implemented.');
-}
 

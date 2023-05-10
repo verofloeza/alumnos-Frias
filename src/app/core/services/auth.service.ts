@@ -53,7 +53,7 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('token');
     this.authUser$.next(null);
-    this.router.navigate(['auth']);
+    this.router.navigate(['auth', 'login']);;
   }
 
   verificarToken(): Observable<boolean> {
@@ -76,7 +76,7 @@ export class AuthService {
           return !!usuarioAutenticado;
         }),
         catchError((err) => {
-          alert('Error al verificar el token');
+          this.router.navigate(['auth', 'login']);
           return throwError(() => err);
         })
       );
@@ -103,7 +103,7 @@ export class AuthService {
             }
           }),
           catchError((err) => {
-            alert('Error al verificar el token');
+            this.router.navigate(['auth', 'login']);
             return throwError(() => err);
           })
         );
