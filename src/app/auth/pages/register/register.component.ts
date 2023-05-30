@@ -1,18 +1,22 @@
-import { AuthService, LoginFormValue } from '../../../core/services/auth.service';
+import { AuthService, RegisterFormValue } from 'src/app/core/services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
-export class LoginComponent {
+export class RegisterComponent {
+  firstNameControl = new FormControl('', [Validators.required] );
+  lastNameControl = new FormControl('', [Validators.required] );
   emailControl = new FormControl('', [Validators.required]);
   passwordControl = new FormControl('', [Validators.required]);
   loginForm = new FormGroup({
+    firstName: this.firstNameControl,
+    lastName: this.lastNameControl,
     email: this.emailControl,
     pass: this.passwordControl,
   });
@@ -27,11 +31,11 @@ export class LoginComponent {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
     } else {
-      this.authService.login(this.loginForm.value as LoginFormValue)
+      this.authService.register(this.loginForm.value as RegisterFormValue)
     }
   }
 
   redireccionar(): void {
-    this.router.navigate(['/auth/registro']);
+    this.router.navigate(['/auth/login']);
   }
 }

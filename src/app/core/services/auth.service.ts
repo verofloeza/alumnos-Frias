@@ -10,6 +10,16 @@ export interface LoginFormValue {
   pass: string;
 }
 
+export interface RegisterFormValue {
+  id: Number;
+  name: string;
+  firstName: string;
+  email: string;
+  pass: string;
+  token: string;
+  role: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -48,6 +58,32 @@ export class AuthService {
             }
           }
         })
+  }
+  register(formValue: RegisterFormValue): void {
+    formValue = {
+      ...formValue,
+      token: Math.random().toString(36).substr(2),
+      role: 'cliente'
+    };
+  
+    this.httpClient.post<Usuario>('http://localhost:3000/user', formValue)
+      .subscribe(
+        (usuario) => {
+          console.log(usuario);
+          if (usuario) {
+            localStorage.removeItem('token');
+            localStorage.setItem('token', usuario.token);
+            this.authUser$.next(usuario);
+            this.router.navigate(['dashboard']);
+          } else {
+            alert('¡No se pudo realizar el registro!');
+          }
+        },
+        (error) => {
+          console.error('Error al realizar la solicitud:', error);
+          alert('¡No se pudo realizar el registro!');
+        }
+      );
   }
 
   logout(): void {
