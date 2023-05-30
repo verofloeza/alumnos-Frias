@@ -1,4 +1,5 @@
 import { AbmInscriptionComponent } from './abm-inscription/abm-inscription.component';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Inscripciones } from 'src/app/core/models';
@@ -12,20 +13,32 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./inscriptions.component.scss']
 })
 export class InscriptionsComponent {
+
   panelOpenCursoState = false;
   panelOpenAlumnoState = false;
   dataSource = new MatTableDataSource<Inscripciones>();
-  displayedColumns: string[] = ['Nro', 'Alumno', 'Curso', 'FechaInscripcion', 'Editar', 'Eliminar'];
+  role: string | undefined = '';
+  displayedColumns: string[] = [];
 
   constructor(
     public dialog: MatDialog,
     private inscripcionesService: InscripcionesService,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private authService: AuthService
   ){
     this.inscripcionesService.inscripcion
     .subscribe(
       (result) => this.dataSource.data = result
     )
+    this.authService.userAuth()
+        .subscribe((role)=>{
+          this.role = role?.role;
+          if(this.role === 'cliente'){
+            this.displayedColumns= ['Nro', 'Alumno', 'Curso', 'FechaInscripcion', 'Eliminar'];
+          }else{
+            this.displayedColumns= ['Nro', 'Alumno', 'Curso', 'FechaInscripcion', 'Editar', 'Eliminar']
+          }
+        })
   }
 
   openDialog() {

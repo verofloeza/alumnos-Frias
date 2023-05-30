@@ -1,4 +1,5 @@
 import { AbmCoursesComponent } from './abm-courses/abm-courses.component';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { Component } from '@angular/core';
 import { Curso } from 'src/app/core/models';
 import { CursosService } from '../../../core/services/cursos.service';
@@ -12,19 +13,29 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./courses.component.scss']
 })
 export class CoursesComponent {
-
+  role: string | undefined = '';
+  displayedColumns: string[] = [];
   dataSource = new MatTableDataSource<Curso>();
-  displayedColumns: string[] = ['Nro', 'Nombre', 'FechaInicio', 'FechaFinalizacion', 'Editar', 'Eliminar'];
 
   constructor(
     public dialog: MatDialog,
     private CursosService: CursosService,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private authService: AuthService
     ){
     this.CursosService.curso
     .subscribe((curso)=>
       this.dataSource.data = curso
     )
+    this.authService.userAuth()
+        .subscribe((role)=>{
+          this.role = role?.role;
+          if(this.role === 'cliente'){
+            this.displayedColumns= ['Nro', 'Nombre', 'FechaInicio', 'FechaFinalizacion', 'Eliminar'];
+          }else{
+            this.displayedColumns= ['Nro', 'Nombre', 'FechaInicio', 'FechaFinalizacion', 'Editar', 'Eliminar']
+          }
+        })
   }
 
   openDialog() {

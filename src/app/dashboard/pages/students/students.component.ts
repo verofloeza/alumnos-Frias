@@ -1,9 +1,10 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Observable, Subject, Subscription, takeUntil } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 
 import { AbmStudentsComponent } from './abm-students/abm-students.component';
 import { Alumno } from 'src/app/core/models';
 import { AlumnosService } from '../../../core/services/alumnos.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import {MatDialog} from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
@@ -15,7 +16,9 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class StudentsComponent implements OnDestroy{
 
-    displayedColumns: string[] = ['Nro', 'NombreApellido', 'Email', 'Edad', 'FechaNacimiento', 'Genero', 'Editar', 'Eliminar'];
+    role: string | undefined = '';
+
+    displayedColumns: string[] = [];
 
     dataSource = new MatTableDataSource<Alumno>();
     
@@ -25,14 +28,22 @@ export class StudentsComponent implements OnDestroy{
     constructor(
       public dialog: MatDialog,
       private alumnosService: AlumnosService,
-      private httpClient: HttpClient
-      
+      private httpClient: HttpClient,
+      private authService: AuthService
       ) {
         this.alumnosSubscription = this.alumnosService.getAlumnos()
         .subscribe((alumnos) => {
           this.dataSource.data = alumnos;
         })
-   
+        this.authService.userAuth()
+        .subscribe((role)=>{
+          this.role = role?.role;
+          if(this.role === 'cliente'){
+            this.displayedColumns= ['Nro', 'NombreApellido', 'Email', 'Edad', 'FechaNacimiento', 'Genero', 'Eliminar'];
+          }else{
+            this.displayedColumns= ['Nro', 'NombreApellido', 'Email', 'Edad', 'FechaNacimiento', 'Genero','Editar', 'Eliminar']
+          }
+        })
             
         }
 
