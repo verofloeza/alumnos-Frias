@@ -19,67 +19,13 @@
       "id": 2
     },
     {
-      "firstName": "MArcos ",
+      "firstName": "Marcos ",
       "lastName": "Lopez",
       "email": "marcos@lopez.com",
       "pass": "123456",
+      "role": "admin",
       "token": "ntfybmm8hg",
-      "role": "estudiante",
       "id": 3
-    },
-    {
-      "firstName": "Ariel",
-      "lastName": "Perez",
-      "email": "ariel@perez.com",
-      "pass": "123456",
-      "token": "3fgxwxu4z76",
-      "role": "estudiante",
-      "id": 4
-    },
-    {
-      "firstName": "Agustin",
-      "lastName": "Farias",
-      "email": "agus@farias.com",
-      "pass": "123456",
-      "token": "j8n5uzmybh",
-      "role": "estudiante",
-      "id": 5
-    },
-    {
-      "firstName": "Agustin",
-      "lastName": "Farias",
-      "email": "agus@farias.com",
-      "pass": "123456",
-      "token": "lu5alkitw6",
-      "role": "estudiante",
-      "id": 6
-    },
-    {
-      "firstName": "Agustin",
-      "lastName": "Farias",
-      "email": "agus@farias.com",
-      "pass": "123456",
-      "token": "mrbs68kf1hf",
-      "role": "estudiante",
-      "id": 7
-    },
-    {
-      "firstName": "agustin",
-      "lastName": "Farias",
-      "email": "agus@farias.com",
-      "pass": "123456",
-      "token": "4sbl6lw28gk",
-      "role": "estudiante",
-      "id": 8
-    },
-    {
-      "firstName": "Agustin",
-      "lastName": "Farias",
-      "email": "agus@farias.com",
-      "pass": "123456",
-      "token": "2w0gnpup7zg",
-      "role": "estudiante",
-      "id": 9
     }
   ],
   "students": [

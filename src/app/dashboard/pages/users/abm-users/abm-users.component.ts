@@ -17,7 +17,8 @@ export class AbmUsersComponent {
       this.apellidoControl.setValue(data.lastName),
       this.emailControl.setValue(data.email),
       this.passControl.setValue(data.pass),
-      this.roleControl.setValue(data.role)
+      this.roleControl.setValue(data.role),
+      this.token = data.token
     }
   }
   nombreControl = new FormControl('', [Validators.required, Validators.minLength(3)]);
@@ -25,19 +26,25 @@ export class AbmUsersComponent {
   emailControl = new FormControl('', [Validators.required, Validators.email]);
   passControl = new FormControl('', [Validators.required])
   roleControl = new FormControl('', [Validators.required]);
+  token: string = ''; 
 
   usuarioForm = new FormGroup({
     firstName: this.nombreControl,
     lastName: this.apellidoControl,
     email: this.emailControl,
     pass: this.passControl,
-    role: this.roleControl
+    role: this.roleControl,
   })
 
   guardar(): void {
     if (this.usuarioForm.valid) {
+      if(this.token){
+        let usuario =  {...this.usuarioForm.value, token: this.token}
+        this.dialogRef.close(usuario)
+      }else{
+        this.dialogRef.close(this.usuarioForm.value)
+      }
       
-      this.dialogRef.close(this.usuarioForm.value)
     } else {
       this.usuarioForm.markAllAsTouched();
     }

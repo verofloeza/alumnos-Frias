@@ -49,6 +49,7 @@ export class AuthService {
           next: (usuarios) => {
             const usuarioAutenticado = usuarios[0];
             if (usuarioAutenticado) {
+              console.log(usuarioAutenticado)
               localStorage.removeItem('token');
               localStorage.setItem('token', usuarioAutenticado.token)
               this.authUser$.next(usuarioAutenticado);
