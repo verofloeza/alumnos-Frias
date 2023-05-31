@@ -63,7 +63,7 @@ export class AuthService {
     formValue = {
       ...formValue,
       token: Math.random().toString(36).substr(2),
-      role: 'cliente'
+      role: 'estudiante'
     };
   
     this.httpClient.post<Usuario>('http://localhost:3000/user', formValue)

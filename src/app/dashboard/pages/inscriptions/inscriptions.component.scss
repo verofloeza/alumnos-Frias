@@ -1,3 +1,9 @@
-.iconsAction.eliminar{
+.iconsAction{
+    cursor:pointer
+  }
+  .iconsAction.editar{
+    color: green;
+  }
+  .iconsAction.eliminar{
     color: red
   }

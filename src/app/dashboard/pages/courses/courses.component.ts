@@ -30,7 +30,7 @@ export class CoursesComponent {
     this.authService.userAuth()
         .subscribe((role)=>{
           this.role = role?.role;
-          if(this.role === 'cliente'){
+          if(this.role === 'estudiante'){
             this.displayedColumns= ['Nro', 'Nombre', 'FechaInicio', 'FechaFinalizacion', 'Eliminar'];
           }else{
             this.displayedColumns= ['Nro', 'Nombre', 'FechaInicio', 'FechaFinalizacion', 'Editar', 'Eliminar']

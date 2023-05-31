@@ -24,7 +24,7 @@
           <mat-icon *ngIf="link.icon" class="listItem">{{ link.icon }}</mat-icon> {{ link.title }}
         </a>
       </mat-nav-list>
-      <mat-nav-list *ngSwitchCase="'cliente'">
+      <mat-nav-list *ngSwitchCase="'estudiante'">
         <a
           *ngFor="let linkC of linksClient"
           [routerLink]="linkC.path"

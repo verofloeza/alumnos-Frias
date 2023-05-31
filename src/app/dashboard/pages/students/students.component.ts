@@ -38,7 +38,7 @@ export class StudentsComponent implements OnDestroy{
         this.authService.userAuth()
         .subscribe((role)=>{
           this.role = role?.role;
-          if(this.role === 'cliente'){
+          if(this.role === 'estudiante'){
             this.displayedColumns= ['Nro', 'NombreApellido', 'Email', 'Edad', 'FechaNacimiento', 'Genero', 'Eliminar'];
           }else{
             this.displayedColumns= ['Nro', 'NombreApellido', 'Email', 'Edad', 'FechaNacimiento', 'Genero','Editar', 'Eliminar']

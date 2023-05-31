@@ -14,7 +14,7 @@
       "lastName": "Mendez",
       "email": "javier@gmail.com",
       "pass": "1234",
-      "role": "cliente",
+      "role": "estudiante",
       "token": "ip69nxbi3op",
       "id": 2
     },
@@ -24,7 +24,7 @@
       "email": "marcos@lopez.com",
       "pass": "123456",
       "token": "ntfybmm8hg",
-      "role": "cliente",
+      "role": "estudiante",
       "id": 3
     },
     {
@@ -33,7 +33,7 @@
       "email": "ariel@perez.com",
       "pass": "123456",
       "token": "3fgxwxu4z76",
-      "role": "cliente",
+      "role": "estudiante",
       "id": 4
     },
     {
@@ -42,7 +42,7 @@
       "email": "agus@farias.com",
       "pass": "123456",
       "token": "j8n5uzmybh",
-      "role": "cliente",
+      "role": "estudiante",
       "id": 5
     },
     {
@@ -51,7 +51,7 @@
       "email": "agus@farias.com",
       "pass": "123456",
       "token": "lu5alkitw6",
-      "role": "cliente",
+      "role": "estudiante",
       "id": 6
     },
     {
@@ -60,7 +60,7 @@
       "email": "agus@farias.com",
       "pass": "123456",
       "token": "mrbs68kf1hf",
-      "role": "cliente",
+      "role": "estudiante",
       "id": 7
     },
     {
@@ -69,7 +69,7 @@
       "email": "agus@farias.com",
       "pass": "123456",
       "token": "4sbl6lw28gk",
-      "role": "cliente",
+      "role": "estudiante",
       "id": 8
     },
     {
@@ -78,7 +78,7 @@
       "email": "agus@farias.com",
       "pass": "123456",
       "token": "2w0gnpup7zg",
-      "role": "cliente",
+      "role": "estudiante",
       "id": 9
     }
   ],
