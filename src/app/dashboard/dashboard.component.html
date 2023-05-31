@@ -35,6 +35,14 @@
           <mat-icon *ngIf="linkC.icon" class="listItem">{{ linkC.icon }}</mat-icon> {{ linkC.title }}
         </a>
       </mat-nav-list>
+      <mat-nav-list>
+        <a
+          (click)="logout()"
+          mat-list-item
+        >
+        <mat-icon>exit_to_app</mat-icon> Logout
+        </a>
+      </mat-nav-list>
     </mat-drawer>
   
     <div class="example-sidenav-content">
