@@ -3,7 +3,7 @@
         <h1 appFontSize appColorTitle appWeightText>Listado de Cursos</h1>
     </div>
 </div>
-<div class="demo-button-container"> 
+<div class="demo-button-container" *ngIf="role === 'admin'"> 
     <button mat-raised-button (click)="openDialog()" class="demo-button">
       Agregar Curso
     </button>

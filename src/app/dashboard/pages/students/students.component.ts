@@ -39,7 +39,7 @@ export class StudentsComponent implements OnDestroy{
         .subscribe((role)=>{
           this.role = role?.role;
           if(this.role === 'estudiante'){
-            this.displayedColumns= ['Nro', 'NombreApellido', 'Email', 'Edad', 'FechaNacimiento', 'Genero', 'Eliminar'];
+            this.displayedColumns= ['Nro', 'NombreApellido', 'Email', 'Edad', 'FechaNacimiento', 'Genero'];
           }else{
             this.displayedColumns= ['Nro', 'NombreApellido', 'Email', 'Edad', 'FechaNacimiento', 'Genero','Editar', 'Eliminar']
           }
