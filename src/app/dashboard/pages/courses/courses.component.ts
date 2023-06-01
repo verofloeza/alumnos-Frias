@@ -6,6 +6,7 @@ import { CursosService } from '../../../core/services/cursos.service';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-courses',
@@ -21,7 +22,8 @@ export class CoursesComponent {
     public dialog: MatDialog,
     private CursosService: CursosService,
     private httpClient: HttpClient,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
     ){
     this.CursosService.curso
     .subscribe((curso)=>
@@ -33,7 +35,7 @@ export class CoursesComponent {
           if(this.role === 'estudiante'){
             this.displayedColumns= ['Nro', 'Nombre', 'FechaInicio', 'FechaFinalizacion'];
           }else{
-            this.displayedColumns= ['Nro', 'Nombre', 'FechaInicio', 'FechaFinalizacion', 'Editar', 'Eliminar']
+            this.displayedColumns= ['Nro', 'Nombre', 'FechaInicio', 'FechaFinalizacion', 'Editar', 'Eliminar', 'Ver']
           }
         })
   }
@@ -67,5 +69,8 @@ export class CoursesComponent {
   }
   eliminarCurso(id: number): void {
     this.CursosService.deleteCurso(id)
+  }
+  verCurso( id: number){
+    this.router.navigate(['./dashboard/cursos/' + id]);
   }
 }

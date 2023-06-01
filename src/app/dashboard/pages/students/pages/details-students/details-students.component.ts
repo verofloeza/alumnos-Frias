@@ -79,10 +79,10 @@ export class DetailsStudentsComponent {
     this.inscripcionesService.getInscripcionesByAlumnoId(parseInt(this.activateRoute.snapshot.params['id']))
     .subscribe((inscripciones) => {
       this.inscripciones = inscripciones;
-      this.obtenerCursosDeInscripciones(inscripciones);
+      this.obtenerAlumnoDeInscripciones(inscripciones);
     });
   }
-  obtenerCursosDeInscripciones(inscripciones: Inscripciones[]): void {
+  obtenerAlumnoDeInscripciones(inscripciones: Inscripciones[]): void {
     const idsCursos = inscripciones.map((inscripcion) => inscripcion.course);
     const observablesCursos = idsCursos.map((idCurso) => this.cursosService.getCursoById(idCurso));
     forkJoin(observablesCursos).subscribe((cursos) => {
@@ -93,7 +93,6 @@ export class DetailsStudentsComponent {
         endDate: curso.endDate,
         inscription: inscripciones[index].id
       }));
-      console.log(data)
       this.dataSource.data = data;
     });
   }
