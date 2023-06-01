@@ -1,5 +1,6 @@
 import { AbmStudentsComponent } from './abm-students/abm-students.component';
 import { CommonModule } from '@angular/common';
+import { DetailsStudentsComponent } from './pages/details-students/details-students.component';
 import { DirectivesModule } from '../../../shared/directives/directives.module';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -20,7 +21,8 @@ import { StudentsRoutingModule } from './students-routing.module';
 @NgModule({
   declarations: [
     StudentsComponent,
-    AbmStudentsComponent
+    AbmStudentsComponent,
+    DetailsStudentsComponent
   ],
   imports: [
     CommonModule,

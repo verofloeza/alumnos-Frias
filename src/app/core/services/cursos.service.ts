@@ -34,4 +34,7 @@ export class CursosService {
           })
     return this.cursos$.asObservable()
   }
+  getCursoById(id: number): Observable<Curso> {
+    return this.httpClient.get<Curso>(`http://localhost:3000/courses/${id}`);
+  }
 }

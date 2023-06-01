@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import {MatDialog} from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-students',
@@ -29,11 +30,13 @@ export class StudentsComponent implements OnDestroy{
       public dialog: MatDialog,
       private alumnosService: AlumnosService,
       private httpClient: HttpClient,
-      private authService: AuthService
+      private authService: AuthService,
+      private router: Router
       ) {
         this.alumnosSubscription = this.alumnosService.getAlumnos()
         .subscribe((alumnos) => {
           this.dataSource.data = alumnos;
+          console.log(this.dataSource.data)
         })
         this.authService.userAuth()
         .subscribe((role)=>{
@@ -41,7 +44,7 @@ export class StudentsComponent implements OnDestroy{
           if(this.role === 'estudiante'){
             this.displayedColumns= ['Nro', 'NombreApellido', 'Email', 'Edad', 'FechaNacimiento', 'Genero'];
           }else{
-            this.displayedColumns= ['Nro', 'NombreApellido', 'Email', 'Edad', 'FechaNacimiento', 'Genero','Editar', 'Eliminar']
+            this.displayedColumns= ['Nro', 'NombreApellido', 'Email', 'Edad', 'FechaNacimiento', 'Genero','Editar', 'Eliminar', 'Ver']
           }
         })
             
@@ -61,6 +64,10 @@ export class StudentsComponent implements OnDestroy{
 
   deleteAlumno(id: number){
     this.alumnosService.deleteAlumno(id)
+  }
+
+  verAlumno( id: number){
+    this.router.navigate(['./dashboard/estudiantes/detalle/' + id]);
   }
   
   openEditAlumno(id: number, data : []){

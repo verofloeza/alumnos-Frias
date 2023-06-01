@@ -1,4 +1,4 @@
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 
 import { Alumno } from '../models/alumnos.model';
 import { HttpClient } from '@angular/common/http';
@@ -10,7 +10,6 @@ import { Injectable } from '@angular/core';
 export class AlumnosService {
 
   alumno: Alumno[]  = [];
-  ultAlumno: Alumno[] = [];
 
   private alumno$ = new BehaviorSubject<Alumno[]>(this.alumno);
 

@@ -1,16 +1,16 @@
 export interface IInscripcion {
     id: number;
     date: Date;
-    students: [];
-    courses:[];
+    student: number;
+    course:number;
   }
   export class Inscripciones implements IInscripcion {
 
     constructor(
       public id: number,
       public date: Date,
-      public students: [],
-      public courses: []
+      public student: number,
+      public course: number
     ) {}
   
     

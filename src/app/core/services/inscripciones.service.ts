@@ -34,4 +34,8 @@ export class InscripcionesService {
           })
     return this.inscripciones$.asObservable()
   }
+
+  getInscripcionesByAlumnoId(alumnoId: number): Observable<Inscripciones[]> {
+    return this.httpClient.get<Inscripciones[]>(`http://localhost:3000/inscription?student=${alumnoId}`);
+  }
 }

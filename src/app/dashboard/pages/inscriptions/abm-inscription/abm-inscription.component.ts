@@ -32,8 +32,9 @@ export class AbmInscriptionComponent {
           this.alumnosBD = alumnos;
         })
     if(data){
-      this.alumnoControl.setValue(data.inscripcion.student),
-      this.cursoControl.setValue(data.inscripcion.course)
+      console.log(data)
+      this.alumnoControl.setValue(data.inscripcion.student.id),
+      this.cursoControl.setValue(data.inscripcion.course.id)
     }
   }
   

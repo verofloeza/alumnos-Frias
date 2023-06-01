@@ -70,42 +70,28 @@
   ],
   "inscription": [
     {
-      "student": {
-        "id": 1,
-        "firstName": "Veronica",
-        "lastName": "Frias",
-        "email": "vero@gmail.com",
-        "age": 8,
-        "birthdate": "1986-12-15",
-        "gender": "F"
-      },
-      "course": {
-        "id": 1,
-        "name": "Curso Angular",
-        "startDate": "2023-04-25",
-        "endDate": "2023-06-25"
-      },
-      "date": "2023-05-06T19:47:11.433Z",
-      "id": 1
-    },
-    {
-      "student": {
-        "id": 2,
-        "firstName": "Marcos",
-        "lastName": "Lopez",
-        "email": "marcos@gmail.com",
-        "age": 15,
-        "birthdate": "1979-4-2",
-        "gender": "M"
-      },
-      "course": {
-        "id": 1,
-        "name": "Curso Angular",
-        "startDate": "2023-04-25",
-        "endDate": "2023-06-25"
-      },
+      "student": 2,
+      "course": 2,
       "date": "2023-05-06T19:50:04.616Z",
       "id": 2
+    },
+    {
+      "student": 1,
+      "course": 3,
+      "date": "2023-06-01T01:08:07.920Z",
+      "id": 4
+    },
+    {
+      "student": 1,
+      "course": 1,
+      "date": "2023-06-01T01:11:58.263Z",
+      "id": 5
+    },
+    {
+      "student": 1,
+      "course": 2,
+      "date": "2023-06-01T01:12:03.858Z",
+      "id": 6
     }
   ]
 }

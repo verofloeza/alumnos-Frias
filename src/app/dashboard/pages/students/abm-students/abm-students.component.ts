@@ -15,6 +15,7 @@ export class AbmStudentsComponent{
     @Inject(MAT_DIALOG_DATA) private data:any
     ) {
       if(data){
+        
         this.nombreControl.setValue(data.firstName),
         this.apellidoControl.setValue(data.lastName),
         this.emailControl.setValue(data.email),
