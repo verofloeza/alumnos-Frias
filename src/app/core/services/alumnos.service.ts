@@ -34,4 +34,8 @@ export class AlumnosService {
           })
     return this.alumno$.asObservable()
   }
+  
+  getAlumnoById(id: number): Observable<Alumno> {
+    return this.httpClient.get<Alumno>(`http://localhost:3000/students/${id}`);
+  }
 }
