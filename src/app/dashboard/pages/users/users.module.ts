@@ -1,6 +1,7 @@
 import { AbmUsersComponent } from './abm-users/abm-users.component';
 import { CommonModule } from '@angular/common';
 import { DirectivesModule } from 'src/app/shared/directives/directives.module';
+import { EffectsModule } from '@ngrx/effects';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,6 +13,7 @@ import { NgModule } from '@angular/core';
 import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UsersComponent } from './users.component';
+import { UsersEffects } from 'src/app/store/users/users.effects';
 import { UsersRoutingModule } from './users-routing.module';
 
 @NgModule({
@@ -31,7 +33,8 @@ import { UsersRoutingModule } from './users-routing.module';
     ReactiveFormsModule,
     MatSelectModule,
     UsersRoutingModule, 
-    MatIconModule
+    MatIconModule, 
+    EffectsModule.forFeature([UsersEffects])
   ],
   exports: [
     UsersComponent

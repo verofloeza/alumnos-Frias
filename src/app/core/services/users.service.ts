@@ -1,39 +1,32 @@
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Usuario, UsuarioCreate } from '../models/usuario.model';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Usuario } from '../models/usuario.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-
-  usuario: Usuario[]  = [];
-
-  private usuario$ = new BehaviorSubject<Usuario[]>(this.usuario);
-
+  
   constructor(
     private httpClient: HttpClient
   ) { }
 
   getUsuarios() : Observable<Usuario[]> {
-    this.httpClient.get<Usuario[]>('http://localhost:3000/user')
-    .subscribe({
-      next: (user) =>{
-        this.usuario$.next(user)
-      }
-    })
-    return this.usuario$.asObservable();
+    return this.httpClient.get<Usuario[]>('http://localhost:3000/user')
   }
   
   deleteUser(id: number): Observable<Usuario[] | any> {
-    this.httpClient.delete<Usuario[]>(`http://localhost:3000/user/${id}`)
-          .subscribe( (data) =>{
-            this.getUsuarios()
-          })
-    return this.usuario$.asObservable()
+    return  this.httpClient.delete<Usuario[]>(`http://localhost:3000/user/${id}`)
   }
 
+  createUsers(data: UsuarioCreate): Observable<Usuario>{
+    return this.httpClient.post<Usuario>(`http://localhost:3000/user`, data)
+  }
+
+  editeUsers(data: Usuario, id: number): Observable<Usuario>{
+    return this.httpClient.put<Usuario>(`http://localhost:3000/user/${id}`, data)
+  }
   
 }

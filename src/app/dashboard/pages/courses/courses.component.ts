@@ -33,7 +33,7 @@ export class CoursesComponent {
         .subscribe((role)=>{
           this.role = role?.role;
           if(this.role === 'estudiante'){
-            this.displayedColumns= ['Nro', 'Nombre', 'FechaInicio', 'FechaFinalizacion'];
+            this.displayedColumns= ['Nro', 'Nombre', 'FechaInicio', 'FechaFinalizacion', 'Ver'];
           }else{
             this.displayedColumns= ['Nro', 'Nombre', 'FechaInicio', 'FechaFinalizacion', 'Editar', 'Eliminar', 'Ver']
           }
